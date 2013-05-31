@@ -1,0 +1,26 @@
+{
+    "name": "monarobase/country-list",
+    "version": "1.0.0",
+    "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jonathan Thuau",
+            "email": "jonathan@monarobase.net",
+            "homepage": "http://monarobase.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x",
+        "umpirsky/country-list": "dev-master",
+        "noiselabs/country-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Monarobase\\CountryList": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
