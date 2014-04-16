@@ -71,7 +71,7 @@ class CountryList {
 
 	/**
 	 * Returns one country
-	 * 
+	 *
 	 * @param string $country The country
 	 * @param string $locale The locale (default: en)
 	 * @param string $format The format (default: php)
@@ -86,7 +86,7 @@ class CountryList {
 
 	/**
 	 * Returns a list of countries
-	 * 
+	 *
 	 * @param string $locale The locale (default: en)
 	 * @param string $locale The format (default: php)
 	 * @param string $source Data source: "icu" or "cldr"
@@ -130,7 +130,7 @@ class CountryList {
 				throw new \RuntimeException(sprintf('Unable to load the country data file "%s"', $file));
 			}
 
-			$this->dataCache[$locale][$source][$format] = ($format == 'php') ? require_once $file : file_get_contents($file);
+			$this->dataCache[$locale][$source][$format] = ($format == 'php') ? require $file : file_get_contents($file);
 		}
 
 		return $this->sortData($locale, $this->dataCache[$locale][$source][$format]);
