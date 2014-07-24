@@ -1,6 +1,6 @@
 {
     "name": "monarobase/country-list",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats for Laravel 4",
     "license": "MIT",
     "authors": [
@@ -13,12 +13,12 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "umpirsky/country-list": "dev-master"
+        "umpirsky/country-list": "1.*"
     },
     "autoload": {
         "psr-0": {
             "Monarobase\\CountryList": "src/"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
