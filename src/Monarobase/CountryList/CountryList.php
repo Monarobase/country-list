@@ -16,6 +16,7 @@
  */
 
 namespace Monarobase\CountryList;
+use Exception;
 
 /**
  * CountryList
@@ -70,25 +71,27 @@ class CountryList {
     }
 
 	/**
-	 * Returns one country
+	 * Returns one country.
 	 *
-	 * @param string $country The country
+	 * @param string $countryCode The country
 	 * @param string $locale The locale (default: en)
-	 * @param string $format The format (default: php)
 	 * @param string $source Data source: "icu" or "cldr"
 	 * @return string
+	 * @throws CountryNotFoundException If the country code doesn't match any country.
 	 */
-	public function getOne($country, $locale = 'en', $source = 'cldr')
+	public function getOne($countryCode, $locale = 'en', $source = 'cldr')
 	{
+		$countryCode = mb_strtoupper($countryCode);
 		$locales = $this->loadData($locale, mb_strtolower($source), 'php');
-		return $locales[mb_strtoupper($country)];
+		if(!$this->has($countryCode, $locale, $source)) throw new CountryNotFoundException($countryCode);
+		return $locales[mb_strtoupper($countryCode)];
 	}
 
 	/**
-	 * Returns a list of countries
+	 * Returns a list of countries.
 	 *
 	 * @param string $locale The locale (default: en)
-	 * @param string $locale The format (default: php)
+	 * @param string $format The format (default: php)
 	 * @param string $source Data source: "icu" or "cldr"
 	 * @return array
 	 */
@@ -97,11 +100,12 @@ class CountryList {
 		return $this->loadData($locale, mb_strtolower($source), $format);
 	}
 
-    /**
-     * @param string $locale The locale
-     * @param string $source Data source.
-     * @param array $data An array (list) with country data
-     */
+	/**
+	 * @param string $locale The locale
+	 * @param string $source Data source
+	 * @param array $data An array (list) with country data
+	 * @return CountryList The instance of CountryList to enable fluent interface
+	 */
     public function setList($locale, $source, array $data)
     {
         $this->dataCache[$locale][mb_strtolower($source)] = $data;
@@ -113,9 +117,9 @@ class CountryList {
 	 * A lazy-loader that loads data from a PHP file if it is not stored in
 	 * memory yet.
 	 *
-	 * @param string $locale The locale
-	 * @param string $source Data source.
 	 * @param string $locale The format (default: php)
+	 * @param string $source Data source
+	 * @param string $format The format (default: php)
 	 * @return array An array (list) with country
 	 */
 	protected function loadData($locale, $source, $format)
@@ -159,4 +163,20 @@ class CountryList {
 
 		return $data;
 	}
+
+	/**
+	 * Indicates whether or not a given $countryCode matches a country.
+	 * 
+	 * @param string $countryCode   a 2-letter country code
+	 * @param string $locale        The locale (default: en)
+	 * @param string $source        Data source: "icu" or "cldr"
+	 * @return bool                 <code>true</code> if a match was found, <code>fals</code> otherewise
+	 */
+	public function has($countryCode, $locale = 'en', $source = 'cldr')
+	{
+		$locales = $this->loadData($locale, mb_strtolower($source), 'php');
+
+		return isset($locales[mb_strtoupper($countryCode)]);
+	}
 }
+
