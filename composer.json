@@ -1,6 +1,5 @@
 {
     "name": "monarobase/country-list",
-    "version": "1.2.0",
     "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats for Laravel 4",
     "license": "MIT",
     "authors": [

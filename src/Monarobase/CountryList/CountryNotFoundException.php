@@ -1,4 +1,5 @@
-<?php
+<?php namespace Monarobase\CountryList;
+
 /**
  * CountryNotFoundException.php
  * 
@@ -7,16 +8,17 @@
  * @copyright 2015 La Haute Société - http://www.lahautesociete.com/
  */
 
-namespace Monarobase\CountryList;
 
 class CountryNotFoundException extends \Exception{
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param string $countryCode A 2-letter country code
+	 * @param string $countryCode  A 2-letter country code
 	 */
-	public function __construct($countryCode){
-		parent::__construct("Country \"$countryCode\" not found.");
+	public function __construct($countryCode)
+	{
+		parent::__construct('Country "'.$countryCode.'" not found.');
 	}
+
 }
