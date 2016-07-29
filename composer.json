@@ -1,22 +1,22 @@
 {
-    "name": "monarobase/country-list",
-    "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats for Laravel 4",
+    "name": "tariq86/country-list",
+    "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats for Laravel 4 & 5",
     "license": "MIT",
     "authors": [
         {
-            "name": "Jonathan Thuau",
-            "email": "jonathan@monarobase.net",
-            "homepage": "http://monarobase.net",
+            "name": "Tariq Abusheikh",
+            "email": "tariq@abusheikh.me",
+            "homepage": "https://abusheikh.me",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "umpirsky/country-list": "1.0.0"
+        "php": ">=5.4.0",
+        "umpirsky/country-list": "^1.0.0"
     },
     "autoload": {
         "psr-0": {
-            "Monarobase\\CountryList": "src/"
+            "Tariq86\\CountryList": "src/"
         }
     },
     "minimum-stability": "stable"
