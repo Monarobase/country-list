@@ -1,28 +1,27 @@
 <?php
  /*
- * This file is part of Monarobase-CountryList
+ * This file is part of Tariq86-CountryList
  *
- * (c) 2013 Monarobase
+ * (c) 2016 Tariq86
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  *
- * @category    Monarobase
+ * @category    Tariq86
  * @package     CountryList
- * @copyright   (c) 2013 Monarobase <jonathan@monarobase.net>
- * @link        http://monarobase.net
+ * @copyright   (c) 2016 Tariq86
  */
 
-namespace Monarobase\CountryList;
+namespace Tariq86\CountryList;
 
 use Illuminate\Support\ServiceProvider;
 
 /**
  * CountryListServiceProvider
  *
- * @author Monarobase <jonathan@monarobase.net>
- */ 
+ * @author Tariq86
+ */
 class CountryListServiceProvider extends ServiceProvider {
 
 	/**
@@ -52,7 +51,7 @@ class CountryListServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('countrylist');
+		return ['countrylist'];
 	}
 
 }
