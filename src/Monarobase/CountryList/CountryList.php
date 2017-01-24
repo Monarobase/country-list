@@ -37,12 +37,6 @@ class CountryList {
 	protected $dataCache = array();
 
 	/**
-	 * @var array
-	 * Available data sources.
-	 */
-	protected $dataSources = array('icu', 'cldr');
-
-	/**
 	 * Constructor.
 	 *
 	 * @param string|null $dataDir  Path to the directory containing countries data
@@ -51,8 +45,7 @@ class CountryList {
 	{
 		if (!isset($dataDir))
 		{
-			$r = new \ReflectionClass('Umpirsky\Country\Builder\Builder');
-			$dataDir = sprintf('%s/../../../../country', dirname($r->getFileName()));
+			$dataDir = base_path('vendor/umpirsky/country-list/data');
 		}
 
 		if (!is_dir($dataDir))
@@ -76,16 +69,15 @@ class CountryList {
 	 *
 	 * @param string $countryCode  The country
 	 * @param string $locale       The locale (default: en)
-	 * @param string $source       Data source: "icu" or "cldr"
 	 * @return string
 	 * @throws CountryNotFoundException  If the country code doesn't match any country.
 	 */
-	public function getOne($countryCode, $locale = 'en', $source = 'cldr')
+	public function getOne($countryCode, $locale = 'en')
 	{
 		$countryCode = mb_strtoupper($countryCode);
-		$locales = $this->loadData($locale, mb_strtolower($source), 'php');
+		$locales = $this->loadData($locale, 'php');
 
-		if (!$this->has($countryCode, $locale, $source))
+		if (!$this->has($countryCode, $locale))
 		{
 			throw new CountryNotFoundException($countryCode);
 		}
@@ -98,23 +90,21 @@ class CountryList {
 	 *
 	 * @param string $locale  The locale (default: en)
 	 * @param string $format  The format (default: php)
-	 * @param string $source  Data source: "icu" or "cldr"
 	 * @return array
 	 */
-	public function getList($locale = 'en', $format = 'php', $source = 'cldr')
+	public function getList($locale = 'en', $format = 'php')
 	{
-		return $this->loadData($locale, mb_strtolower($source), $format);
+		return $this->loadData($locale, $format);
 	}
 
 	/**
 	 * @param string $locale  The locale
-	 * @param string $source  Data source
 	 * @param array $data     An array (list) with country data
 	 * @return CountryList    The instance of CountryList to enable fluent interface
 	 */
-	public function setList($locale, $source, array $data)
+	public function setList($locale, array $data)
 	{
-		$this->dataCache[$locale][mb_strtolower($source)] = $data;
+		$this->dataCache[$locale] = $data;
 
 		return $this;
 	}
@@ -123,30 +113,25 @@ class CountryList {
 	 * A lazy-loader that loads data from a PHP file if it is not stored in memory yet.
 	 *
 	 * @param string $locale  The locale
-	 * @param string $source  Data source
 	 * @param string $format  The format (default: php)
 	 * @return array          An array (list) with country
 	 */
-	protected function loadData($locale, $source, $format)
+	protected function loadData($locale, $format)
 	{
-		if (!isset($this->dataCache[$locale][$source][$format]))
+		if (!isset($this->dataCache[$locale][$format]))
 		{
-			if (!in_array($source, $this->dataSources))
-			{
-				throw new \InvalidArgumentException(sprintf('Unknown data source "%s". The available ones are: "%s"', $source, implode('", "', $this->dataSources)));
-			}
-
-			$file = sprintf('%s/%s/%s/country.'.$format, $this->dataDir, $source, $locale);
+			// Customization - "source" does not matter anymore because umpirsky refactored his library.
+            $file = sprintf('%s/%s/country.%s', $this->dataDir, $locale, $format);
 
 			if (!is_file($file))
 			{
 				throw new \RuntimeException(sprintf('Unable to load the country data file "%s"', $file));
 			}
 
-			$this->dataCache[$locale][$source][$format] = ($format == 'php') ? require $file : file_get_contents($file);
+			$this->dataCache[$locale][$format] = ($format == 'php') ? require $file : file_get_contents($file);
 		}
 
-		return $this->sortData($locale, $this->dataCache[$locale][$source][$format]);
+		return $this->sortData($locale, $this->dataCache[$locale][$format]);
 	}
 
 	/**
@@ -181,12 +166,11 @@ class CountryList {
 	 * 
 	 * @param string $countryCode  A 2-letter country code
 	 * @param string $locale       The locale (default: en)
-	 * @param string $source       Data source: "icu" or "cldr"
 	 * @return bool                <code>true</code> if a match was found, <code>false</code> otherwise
 	 */
-	public function has($countryCode, $locale = 'en', $source = 'cldr')
+	public function has($countryCode, $locale = 'en')
 	{
-		$locales = $this->loadData($locale, mb_strtolower($source), 'php');
+		$locales = $this->loadData($locale, 'php');
 
 		return isset($locales[mb_strtoupper($countryCode)]);
 	}

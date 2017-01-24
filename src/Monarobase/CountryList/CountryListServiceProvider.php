@@ -41,7 +41,7 @@ class CountryListServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('countrylist', function ($app) {
-            return new CountryList();
+            return new CountryList(base_path('vendor/umpirsky/country-list/data'));
         });
     }
 
