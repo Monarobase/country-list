@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "umpirsky/country-list": "1.0.0"
+        "umpirsky/country-list": "^2.0.2"
     },
     "autoload": {
         "psr-0": {
