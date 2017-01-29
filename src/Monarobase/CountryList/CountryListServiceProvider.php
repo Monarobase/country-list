@@ -39,9 +39,8 @@ class CountryListServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['countrylist'] = $this->app->share(function($app)
-		{
-			return new CountryList;
+		$this->app->bind('countrylist', function ($app) {
+            		return new CountryList();
 		});
 	}
 
