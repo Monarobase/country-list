@@ -13,7 +13,7 @@ Now open up `config/app.php` and add the service provider to your `providers` ar
 
 Now add the alias.
 
-        'Countries' => Monarobase\CountryList\CountryListFacade::class,
+	'Countries' => Monarobase\CountryList\CountryListFacade::class,
 
 
 ## Usage
