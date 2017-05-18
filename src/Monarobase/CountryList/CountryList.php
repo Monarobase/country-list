@@ -123,7 +123,7 @@ class CountryList {
 		if (!isset($this->dataCache[$locale][$format]))
 		{
 			// Customization - "source" does not matter anymore because umpirsky refactored his library.
-            $file = sprintf('%s/%s/country.%s', $this->dataDir, $locale, $format);
+			$file = sprintf('%s/%s/country.%s', $this->dataDir, $locale, $format);
 
 			if (!is_file($file))
 			{
