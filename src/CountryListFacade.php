@@ -1,5 +1,8 @@
 <?php
- /*
+
+namespace Monarobase\CountryList;
+
+/**
  * This file is part of Monarobase-CountryList
  *
  * (c) 2013 Monarobase
@@ -14,22 +17,23 @@
  * @link        http://monarobase.net
  */
 
-namespace Monarobase\CountryList;
-
 use Illuminate\Support\Facades\Facade;
 
 /**
  * CountryListFacade
  *
  * @author Monarobase <jonathan@monarobase.net>
- */ 
-class CountryListFacade extends Facade {
- 
+ */
+class CountryListFacade extends Facade
+{
+
     /**
      * Get the registered name of the component.
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'countrylist'; }
- 
+    protected static function getFacadeAccessor()
+    {
+        return CountryList::class;
+    }
 }

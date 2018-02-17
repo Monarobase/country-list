@@ -16,9 +16,19 @@
         "umpirsky/country-list": "2.0.*"
     },
     "autoload": {
-        "psr-0": {
-            "Monarobase\\CountryList": "src/"
+        "psr-4": {
+            "Monarobase\\CountryList\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Monarobase\\CountryList\\CountryListServiceProvider"
+            ],
+            "aliases": {
+                "Countries": "Monarobase\\CountryList\\CountryListFacade"
+            }
+        }
+    }
 }
