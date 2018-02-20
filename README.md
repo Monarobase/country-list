@@ -9,12 +9,15 @@ Run `composer require monarobase/country-list` to pull down the latest version o
 
 Now open up `config/app.php` and add the service provider to your `providers` array.
 
-	Monarobase\CountryList\CountryListServiceProvider::class,
+```php
+Monarobase\CountryList\CountryListServiceProvider::class,
+```
 
 Now add the alias.
 
-	'Countries' => Monarobase\CountryList\CountryListFacade::class,
-
+```php
+'Countries' => Monarobase\CountryList\CountryListFacade::class,
+```
 
 ## Usage
 
@@ -23,15 +26,18 @@ Now add the alias.
 
 Get all countries
 
-	Route::get('/', function()
-	{
-		return Countries::getList('en', 'json');
-	});
-
+```php
+Route::get('/', function()
+{
+	return Countries::getList('en', 'json');
+});
+```
 
 Get one country
 
-	Route::get('/', function()
-	{
-		return Countries::getOne('RU', 'en');
-	});
+```php
+Route::get('/', function()
+{
+	return Countries::getOne('RU', 'en');
+});
+```
