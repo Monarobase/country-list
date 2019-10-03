@@ -1,17 +1,16 @@
 <?php
+declare(strict_types=1);
 
 namespace Monarobase\CountryList;
 
 /**
- * CountryNotFoundException.php
+ * CountryNotFoundException
  *
  * @author Yohann Bianchi<yohann.b@lahautesociete.com>
- * @since 12/05/15
  * @copyright 2015 La Haute Société - http://www.lahautesociete.com/
  */
 class CountryNotFoundException extends \Exception
 {
-
     /**
      * Constructor.
      *

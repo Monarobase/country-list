@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Monarobase\CountryList;
 
@@ -23,10 +24,15 @@ use Illuminate\Support\Facades\Facade;
  * CountryListFacade
  *
  * @author Monarobase <jonathan@monarobase.net>
+ *
+ * @method static string getDataDir()
+ * @method static string getOne(string $countryCode, string $locale = 'en')
+ * @method static array getList(string $locale = 'en', string $format = 'php')
+ * @method static CountryList setList(string $locale, array $data)
+ * @method static bool has(string $countryCode, string $locale = 'en')
  */
 class CountryListFacade extends Facade
 {
-
     /**
      * Get the registered name of the component.
      *
