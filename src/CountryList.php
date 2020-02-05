@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Monarobase\CountryList;
 
@@ -25,7 +26,6 @@ namespace Monarobase\CountryList;
  */
 class CountryList
 {
-
     /**
      * Path to the directory containing countries data.
      * @var string
@@ -43,7 +43,7 @@ class CountryList
      *
      * @param string|null $dataDir  Path to the directory containing countries data
      */
-    public function __construct($dataDir = null)
+    public function __construct(?string $dataDir = null)
     {
         if (!isset($dataDir)) {
             $dataDir = base_path('vendor/umpirsky/country-list/data');
@@ -57,9 +57,11 @@ class CountryList
     }
 
     /**
-     * @return string  The country data directory.
+     * Get the country data directory.
+     *
+     * @return string
      */
-    public function getDataDir()
+    public function getDataDir(): string
     {
         return $this->dataDir;
     }
@@ -72,7 +74,7 @@ class CountryList
      * @return string
      * @throws CountryNotFoundException  If the country code doesn't match any country.
      */
-    public function getOne($countryCode, $locale = 'en')
+    public function getOne(string $countryCode, string $locale = 'en'): string
     {
         $countryCode = mb_strtoupper($countryCode);
         $locales = $this->loadData($locale, 'php');
@@ -89,9 +91,9 @@ class CountryList
      *
      * @param string $locale  The locale (default: en)
      * @param string $format  The format (default: php)
-     * @return array
+     * @return mixed          An array (list) with country or raw data
      */
-    public function getList($locale = 'en', $format = 'php')
+    public function getList(string $locale = 'en', string $format = 'php')
     {
         return $this->loadData($locale, $format);
     }
@@ -101,7 +103,7 @@ class CountryList
      * @param array $data     An array (list) with country data
      * @return CountryList    The instance of CountryList to enable fluent interface
      */
-    public function setList($locale, array $data)
+    public function setList(string $locale, array $data): CountryList
     {
         $this->dataCache[$locale] = $data;
 
@@ -113,9 +115,9 @@ class CountryList
      *
      * @param string $locale  The locale
      * @param string $format  The format (default: php)
-     * @return array          An array (list) with country
+     * @return mixed          An array (list) with country or raw data
      */
-    protected function loadData($locale, $format)
+    protected function loadData(string $locale, string $format)
     {
         $locale = str_replace('-', '_', $locale);
 
@@ -127,7 +129,7 @@ class CountryList
                 throw new \RuntimeException(sprintf('Unable to load the country data file "%s"', $file));
             }
 
-            $this->dataCache[$locale][$format] = ($format == 'php') ? require $file : file_get_contents($file);
+            $this->dataCache[$locale][$format] = ($format === 'php') ? require $file : file_get_contents($file);
         }
 
         return $this->sortData($locale, $this->dataCache[$locale][$format]);
@@ -139,10 +141,10 @@ class CountryList
      * extension).
      *
      * @param string $locale  The locale whose collation rules should be used.
-     * @param array  $data    Array of strings to sort.
-     * @return array          The $data array, sorted.
+     * @param mixed  $data    Array of strings or raw data.
+     * @return mixed          If $data is an array, it will be sorted, otherwise raw data
      */
-    protected function sortData($locale, $data)
+    protected function sortData(string $locale, $data)
     {
         if (is_array($data)) {
             if (class_exists('Collator')) {
@@ -163,7 +165,7 @@ class CountryList
      * @param string $locale       The locale (default: en)
      * @return bool                <code>true</code> if a match was found, <code>false</code> otherwise
      */
-    public function has($countryCode, $locale = 'en')
+    public function has(string $countryCode, string $locale = 'en'): bool
     {
         $locales = $this->loadData($locale, 'php');
 

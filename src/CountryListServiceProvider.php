@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Monarobase\CountryList;
 
@@ -26,7 +27,6 @@ use Illuminate\Support\ServiceProvider;
  */
 class CountryListServiceProvider extends ServiceProvider
 {
-
     /**
      * Indicates if loading of the provider is deferred.
      *

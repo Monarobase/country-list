@@ -1,19 +1,21 @@
 # Country List
 
-Country List is a package for Laravel 4/5 which lists all countries with names and ISO 3166-1 codes in all languages and data formats.
+Country List is a package for Laravel which lists all countries with names and ISO 3166-1 codes in all languages and data formats.
 
 
 ## Installation
 
-Run `composer require monarobase/country-list` to pull down the latest version of Country List.
+Run `composer require monarobase/country-list`.
 
-Now open up `config/app.php` and add the service provider to your `providers` array.
+Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
+
+If you don't use auto-discovery, add the ServiceProvider to the `providers` array in `config/app.php`
 
 ```php
 Monarobase\CountryList\CountryListServiceProvider::class,
 ```
 
-Now add the alias.
+If needed, add the following alias as well.
 
 ```php
 'Countries' => Monarobase\CountryList\CountryListFacade::class,
