@@ -12,13 +12,13 @@ Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add 
 If you don't use auto-discovery, add the ServiceProvider to the `providers` array in `config/app.php`
 
 ```php
-Monarobase\CountryList\CountryListServiceProvider::class,
+Monarobase\CountryList\CurrencyListServiceProvider::class,
 ```
 
 If needed, add the following alias as well.
 
 ```php
-'Countries' => Monarobase\CountryList\CountryListFacade::class,
+'Countries' => Monarobase\CountryList\CurrencyListFacade::class,
 ```
 
 ## Usage
