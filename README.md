@@ -1,24 +1,24 @@
 # Country List
 
-Country List is a package for Laravel which lists all countries with names and ISO 3166-1 codes in all languages and data formats.
+Currency List is a package for Laravel which lists all currencies with names and ISO 4217 codes in all languages and data formats.
 
 
 ## Installation
 
-Run `composer require monarobase/country-list`.
+Run `composer require pminckovskis/currency-list`.
 
 Laravel 5.5 uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
 
 If you don't use auto-discovery, add the ServiceProvider to the `providers` array in `config/app.php`
 
 ```php
-Monarobase\CountryList\CurrencyListServiceProvider::class,
+Clarity\CurrencyList\CurrencyListServiceProvider::class,
 ```
 
 If needed, add the following alias as well.
 
 ```php
-'Countries' => Monarobase\CountryList\CurrencyListFacade::class,
+'Currencies' => Clarity\CurrencyList\CurrencyListFacade::class,
 ```
 
 ## Usage
@@ -26,20 +26,20 @@ If needed, add the following alias as well.
 - Locale (en, en_US, fr, fr_CA...)
 - Format (csv, flags.html, html, json, mysql.sql, php, postgresql.sql, sqlite.sql, sqlserver.sql, txt, xml, yaml)
 
-Get all countries
+Get all currencies
 
 ```php
 Route::get('/', function()
 {
-	return Countries::getList('en', 'json');
+	return Currencies::getList('en', 'json');
 });
 ```
 
-Get one country
+Get one currency
 
 ```php
 Route::get('/', function()
 {
-	return Countries::getOne('RU', 'en');
+	return Currencies::getOne('USD', 'en');
 });
 ```

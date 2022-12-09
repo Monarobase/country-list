@@ -1,5 +1,5 @@
 {
-    "name": "clarity/currency-list",
+    "name": "pminckovskis/currency-list",
     "description": "List of all currencies with names and ISO 4217 codes in all languages and data formats for Laravel",
     "keywords": ["laravel", "currencies"],
     "license": "MIT",
