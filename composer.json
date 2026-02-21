@@ -1,7 +1,10 @@
 {
     "name": "monarobase/country-list",
     "description": "List of all countries with names and ISO 3166-1 codes in all languages and data formats for Laravel",
-    "keywords": ["laravel", "countries"],
+    "keywords": [
+        "laravel",
+        "countries"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -13,7 +16,7 @@
     ],
     "require": {
         "php": ">=5.6.0",
-        "illuminate/support": "^5.8|^6|^7|^8|^9|^10|^11|^12",
+        "illuminate/support": "^5.8|^6|^7|^8|^9|^10|^11|^12|^13.0",
         "umpirsky/country-list": "2.0.*"
     },
     "require-dev": {
